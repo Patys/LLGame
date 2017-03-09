@@ -23,4 +23,36 @@ public class Card {
 		this.word = word;
 		this.meaning = meaning;
 	}
+
+	public float getGood() {
+		return good;
+	}
+
+	public void setGood(float good) {
+		this.good = good;
+	}
+
+	public float getWrong() {
+		return wrong;
+	}
+
+	public void setWrong(float wrong) {
+		this.wrong = wrong;
+	}
+
+	public String getWord() {
+		return word;
+	}
+
+	public void setWord(String word) {
+		this.word = word;
+	}
+
+	public String getMeaning() {
+		return meaning;
+	}
+
+	public void setMeaning(String meaning) {
+		this.meaning = meaning;
+	}
 }
