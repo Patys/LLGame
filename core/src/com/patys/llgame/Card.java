@@ -8,6 +8,14 @@ public class Card {
 	public String word;
 	public String meaning;
 	
+	public Card() {
+		this.good = 0;
+		this.wrong = 0;
+		
+		this.word = "";
+		this.meaning = "";
+	}
+	
 	public Card(String word, String meaning) {
 		this.good = 0;
 		this.wrong = 0;

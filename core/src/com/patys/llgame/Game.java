@@ -26,6 +26,10 @@ public class Game extends ApplicationAdapter {
 		
   		camera = new OrthographicCamera();
 		camera.setToOrtho(false, appWidth, appHeight);
+		
+		CardManager cardManager = new CardManager();
+		cardManager.loadCards("data/cards.json");
+		cardManager.saveCards("data/test.json");
 	}
 
 	@Override
