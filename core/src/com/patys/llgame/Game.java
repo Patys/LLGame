@@ -35,6 +35,10 @@ public class Game extends ApplicationAdapter {
   		camera = new OrthographicCamera();
 		camera.setToOrtho(false, appWidth, appHeight);
 		
+		MetaGame.cardManager = new CardManager();
+		MetaGame.cardManager.loadCards("data/cards.json");
+		MetaGame.cardManager.saveCards("data/test.json");
+		
 		stage = new Stage();
 		table = new Table();
 		table.setFillParent(true);
@@ -44,11 +48,6 @@ public class Game extends ApplicationAdapter {
 		
 		stage.addActor(table);
 		Gdx.input.setInputProcessor(stage);
-				
-		
-		CardManager cardManager = new CardManager();
-		cardManager.loadCards("data/cards.json");
-		cardManager.saveCards("data/test.json");
 	}
 
 	@Override
