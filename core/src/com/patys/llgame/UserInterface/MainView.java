@@ -6,13 +6,16 @@ import com.badlogic.gdx.graphics.Pixmap;
 import com.badlogic.gdx.graphics.Pixmap.Format;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
+import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.scenes.scene2d.Actor;
+import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton.TextButtonStyle;
 import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
+import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
 import com.patys.llgame.MetaGame;
 
 public class MainView extends Table{
@@ -88,13 +91,28 @@ public class MainView extends Table{
 		Label meaningTwoLabel = new Label(meaning_two, label1Style);
 		Label meaningThreeLabel = new Label(meaning_three, label1Style);
 		
-		this.add(mainCardLabel);
+		
+		Table cardMain = new Table();
+		cardMain.background(new TextureRegionDrawable(new TextureRegion(new Texture("data/card_blue.png"))));
+		cardMain.add(mainCardLabel).center();
+
+		Table cardLeft = new Table();
+		cardLeft.background(new TextureRegionDrawable(new TextureRegion(new Texture("data/card_blue.png"))));
+		cardLeft.add(meaningOneLabel).center();
+
+		Table cardCenter = new Table();
+		cardCenter.background(new TextureRegionDrawable(new TextureRegion(new Texture("data/card_blue.png"))));
+		cardCenter.add(meaningTwoLabel).center();
+
+		Table cardRight = new Table();
+		cardRight.background(new TextureRegionDrawable(new TextureRegion(new Texture("data/card_blue.png"))));
+		cardRight.add(meaningThreeLabel).center();
+		
+		this.add();
+		this.add(cardMain).space(5).center();
 		this.row();
-		this.add(meaningOneLabel);
-		this.row();
-		this.add(meaningTwoLabel);
-		this.row();
-		this.add(meaningThreeLabel);
-		this.row();
+		this.add(cardLeft).space(5).left();
+		this.add(cardCenter).space(5).center();
+		this.add(cardRight).space(5).right();
 	}
 }
