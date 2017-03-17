@@ -7,6 +7,8 @@ public class UserInterface {
 	
 	public UserInterface(Table table) {
 		this.table = table;
-		this.table.add(new MainView()).expandX().expandY();
+		this.table.add(new LevelBar()).top().spaceBottom(20);
+		this.table.row();
+		this.table.add(new MainView()).expandX();
 	}
 }
