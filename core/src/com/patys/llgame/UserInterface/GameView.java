@@ -2,20 +2,30 @@ package com.patys.llgame.UserInterface;
 
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
+import com.badlogic.gdx.scenes.scene2d.InputEvent;
+import com.badlogic.gdx.scenes.scene2d.Touchable;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
+import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
 import com.patys.llgame.Card;
 import com.patys.llgame.MetaGame;
 
-public class GameView extends Table{
+public class GameView extends Subject {
 	private DefaultSkin skin;
+	
+	private Table table;
+	
+	private Card currentCard;
 	
 	public GameView() {
 		skin = new DefaultSkin();
+		table = new Table();
+		updateGame();
 	}
 	
-	public void startGame() {
+	public void updateGame() {
+		table.clearChildren();
 		
 		Card mainCard = MetaGame.cardManager.getRandomCard();
 		Card card1 = MetaGame.cardManager.getCardByWord(mainCard.word);
@@ -29,10 +39,10 @@ public class GameView extends Table{
 			card3 = MetaGame.cardManager.getRandomCard();
 		}
 		
-		this.add();
-		this.add(getPreparedCardWithWord(mainCard)).space(5).center();
-		this.row();
-		addCardsToTableInRandomWay(this, card1, card2, card3);
+		table.add();
+		table.add(getPreparedCardWithWord(mainCard)).space(5).center();
+		table.row();
+		addCardsToTableInRandomWay(table, card1, card2, card3);
 	}
 	
 	private Table getPreparedCardWithWord(Card card) {
@@ -42,7 +52,8 @@ public class GameView extends Table{
 		Label meaning = new Label(card.word, skin);
 		
 		graphicalCard.add(meaning).spaceBottom(50).center();
-		
+
+		currentCard = card;
 		return graphicalCard;
 	}
 	
@@ -60,7 +71,37 @@ public class GameView extends Table{
 		graphicalCard.row();
 		graphicalCard.add(wrong).left().padLeft(15).expandX();
 		
+		graphicalCard.setTouchable(Touchable.enabled); 
+		graphicalCard.addListener(addListener(card));
+
 		return graphicalCard;
+	}
+	
+	private ClickListener addListener(final Card card) {
+		return new ClickListener(){
+	        @Override
+	        public void clicked(InputEvent event, float x, float y) {
+	            checkAnswer(currentCard, card);
+	        }
+	    };
+	}
+	
+	private void checkAnswer(Card word, Card meaning) {
+		if(word != null && meaning != null) {
+			if(word.meaning.equals(meaning.meaning)) {
+				MetaGame.cardManager.getCardByWord(word.word).good += 1;
+				MetaGame.experience += 10;
+				MetaGame.points += 1;
+			}
+			else {
+				MetaGame.cardManager.getCardByWord(word.word).wrong += 1;
+				if(MetaGame.points > 0) {
+					MetaGame.points -= 1;
+				}
+			}
+			this.setState(1);
+			updateGame();
+		}
 	}
 	
 	private void addCardsToTableInRandomWay(Table table, Card card1, Card card2, Card card3) {
@@ -74,22 +115,30 @@ public class GameView extends Table{
 			case 1:
 				if(!addedCardOne){
 					addedCardOne = true;
-					this.add(getPreparedCardWithMeaning(card1)).space(5).left();
+					table.add(getPreparedCardWithMeaning(card1)).space(5).left();
 				}
 				break;
 			case 2:
 				if(!addedCardTwo) {
 					addedCardTwo = true;
-					this.add(getPreparedCardWithMeaning(card2)).space(5).left();
+					table.add(getPreparedCardWithMeaning(card2)).space(5).left();
 				}
 				break;
 			case 3:
 				if(!addedCardThree) {
 					addedCardThree = true;
-					this.add(getPreparedCardWithMeaning(card3)).space(5).left();
+					table.add(getPreparedCardWithMeaning(card3)).space(5).left();
 				}
 				break;
 			}
 		}
+	}
+
+	public Table getTable() {
+		return table;
+	}
+
+	public void setTable(Table table) {
+		this.table = table;
 	}
 }

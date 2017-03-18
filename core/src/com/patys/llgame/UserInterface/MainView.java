@@ -12,9 +12,7 @@ public class MainView extends Table{
 	private TextButton exitButton;
 	private DefaultSkin skin;
 	
-	private GameView gameView;
-	
-	public MainView() {
+	public MainView(final UserInterface userInterface) {
 		skin = new DefaultSkin();
 		
 		// Configure a TextButtonStyle and name it "default". Skin resources are stored by type, so this doesn't overwrite the font.
@@ -33,8 +31,6 @@ public class MainView extends Table{
 		playButton.padBottom(5);
 		exitButton = new TextButton("Wyjœcie", skin);
 		
-		gameView = new GameView();
-		
 		this.add(playButton).space(10);
 		this.row();
 		this.add(exitButton);
@@ -42,14 +38,12 @@ public class MainView extends Table{
 		playButton.addListener(new ChangeListener() {
 	        @Override
 	        public void changed (ChangeEvent event, Actor actor) {
-	            createGame();
+	            createGame(userInterface);
 	        }
 	    });
 	}
 	
-	private void createGame() {
-		this.reset();
-		gameView.startGame();
-		this.add(gameView);
+	private void createGame(UserInterface userInterface) {
+		userInterface.startGame();
 	}
 }
