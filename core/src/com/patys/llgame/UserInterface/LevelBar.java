@@ -21,9 +21,9 @@ public class LevelBar extends Observer {
 
 	private void updateTable() {
 		table.clearChildren();
-		Label level = new Label("Poziom: " + Integer.toString(MetaGame.level), skin);
-		Label experience = new Label("Doœwiadczenie: " + Integer.toString(MetaGame.experience), skin);
-		Label points = new Label("Punkty: " + Integer.toString(MetaGame.points), skin);
+		Label level = new Label("Poziom: " + Integer.toString(MetaGame.level), skin.getSkin());
+		Label experience = new Label("Doœwiadczenie: " + Integer.toString(MetaGame.experience), skin.getSkin());
+		Label points = new Label("Punkty: " + Integer.toString(MetaGame.points), skin.getSkin());
 		
 		int averge = (int) ((level.getWidth() + experience.getWidth())/2);
 		int space = Gdx.graphics.getWidth() - averge*3;
@@ -39,6 +39,8 @@ public class LevelBar extends Observer {
 		if(MetaGame.experience > ((MetaGame.level + 1)*20)) {
 			MetaGame.level += 1;
 			MetaGame.experience = 0;
+			NextLevelWindow nextLevelWindow = new NextLevelWindow();
+			nextLevelWindow.getDialog().show(table.getStage());
 		}
 	}
 	

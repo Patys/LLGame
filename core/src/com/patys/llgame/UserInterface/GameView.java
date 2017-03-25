@@ -49,7 +49,7 @@ public class GameView extends Subject {
 		Table graphicalCard = new Table();
 		graphicalCard.background(new TextureRegionDrawable(new TextureRegion(new Texture("data/card_blue.png"))));
 		
-		Label meaning = new Label(card.word, skin);
+		Label meaning = new Label(card.word, skin.getSkin());
 		
 		graphicalCard.add(meaning).spaceBottom(50).center();
 
@@ -61,9 +61,9 @@ public class GameView extends Subject {
 		Table graphicalCard = new Table();
 		graphicalCard.background(new TextureRegionDrawable(new TextureRegion(new Texture("data/card_blue.png"))));
 		
-		Label meaning = new Label(card.meaning, skin);
-		Label good = new Label("Dobrze: " + Float.toString(card.good), skin);
-		Label wrong = new Label("Zle: " + Float.toString(card.wrong), skin);
+		Label meaning = new Label(card.meaning, skin.getSkin());
+		Label good = new Label("Dobrze: " + Float.toString(card.good), skin.getSkin());
+		Label wrong = new Label("Zle: " + Float.toString(card.wrong), skin.getSkin());
 		
 		graphicalCard.add(meaning).spaceBottom(50).center();
 		graphicalCard.row();
