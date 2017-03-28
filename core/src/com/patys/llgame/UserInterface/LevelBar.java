@@ -36,7 +36,7 @@ public class LevelBar extends Observer {
 	}
 	
 	private void updateLevel() {
-		if(MetaGame.experience > ((MetaGame.level + 1)*20)) {
+		if(MetaGame.experience > ((MetaGame.level + 1)*50)) {
 			MetaGame.level += 1;
 			MetaGame.experience = 0;
 			NextLevelWindow nextLevelWindow = new NextLevelWindow();
