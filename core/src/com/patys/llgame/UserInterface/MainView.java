@@ -1,5 +1,6 @@
 package com.patys.llgame.UserInterface;
 
+import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
@@ -39,6 +40,13 @@ public class MainView extends Table{
 	        @Override
 	        public void changed (ChangeEvent event, Actor actor) {
 	            createGame(userInterface);
+	        }
+	    });
+		
+		exitButton.addListener(new ChangeListener() {
+	        @Override
+	        public void changed (ChangeEvent event, Actor actor) {
+	        	Gdx.app.exit();
 	        }
 	    });
 	}
