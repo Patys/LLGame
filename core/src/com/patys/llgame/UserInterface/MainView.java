@@ -10,6 +10,7 @@ import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
 
 public class MainView extends Table{
 	private TextButton playButton;
+	private TextButton shopButton;
 	private TextButton exitButton;
 	private DefaultSkin skin;
 	
@@ -30,16 +31,30 @@ public class MainView extends Table{
 		playButton.padRight(20);
 		playButton.padTop(5);
 		playButton.padBottom(5);
+		shopButton = new TextButton("Sklep", skin.getSkin());
+		shopButton.padLeft(20);
+		shopButton.padRight(20);
+		shopButton.padTop(5);
+		shopButton.padBottom(5);
 		exitButton = new TextButton("Wyjœcie", skin.getSkin());
 		
 		this.add(playButton).space(10);
+		this.row();
+		this.add(shopButton).space(10);
 		this.row();
 		this.add(exitButton);
 		
 		playButton.addListener(new ChangeListener() {
 	        @Override
 	        public void changed (ChangeEvent event, Actor actor) {
-	            createGame(userInterface);
+	            userInterface.goToGame();
+	        }
+	    });
+		
+		shopButton.addListener(new ChangeListener() {
+	        @Override
+	        public void changed (ChangeEvent event, Actor actor) {
+	            userInterface.goToShop();
 	        }
 	    });
 		
@@ -49,9 +64,5 @@ public class MainView extends Table{
 	        	Gdx.app.exit();
 	        }
 	    });
-	}
-	
-	private void createGame(UserInterface userInterface) {
-		userInterface.startGame();
 	}
 }
