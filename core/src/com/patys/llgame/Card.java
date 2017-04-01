@@ -8,12 +8,18 @@ public class Card {
 	public String word;
 	public String meaning;
 	
+	public Boolean bought;
+	public int cost;
+	
 	public Card() {
 		this.good = 0;
 		this.wrong = 0;
 		
 		this.word = "";
 		this.meaning = "";
+		
+		this.bought = false;
+		this.cost = 0;
 	}
 	
 	public Card(String word, String meaning) {
@@ -22,6 +28,9 @@ public class Card {
 		
 		this.word = word;
 		this.meaning = meaning;
+		
+		this.bought = false;
+		this.cost = 0;
 	}
 	
 	public Card(String word, String meaning, float good, float wrong) {
@@ -30,6 +39,9 @@ public class Card {
 		
 		this.word = word;
 		this.meaning = meaning;
+		
+		this.bought = false;
+		this.cost = 0;
 	}
 
 	public float getGood() {
@@ -62,5 +74,21 @@ public class Card {
 
 	public void setMeaning(String meaning) {
 		this.meaning = meaning;
+	}
+
+	public Boolean getBought() {
+		return bought;
+	}
+
+	public void setBought(Boolean bought) {
+		this.bought = bought;
+	}
+
+	public int getCost() {
+		return cost;
+	}
+
+	public void setCost(int cost) {
+		this.cost = cost;
 	}
 }

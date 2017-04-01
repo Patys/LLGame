@@ -16,6 +16,13 @@ public class CardManager {
 	public CardManager() {
 		cards = new ArrayList<Card>();
 	}
+
+	public Boolean addNewCard(Card card) {
+		if(cards.add(card))
+			return true;
+		else
+			return false;
+	}
 	
 	public Boolean addNewCard(String word, String meaning) {
 		if(cards.add(new Card(word, meaning)))
