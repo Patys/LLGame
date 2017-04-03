@@ -18,7 +18,7 @@ public class ShopView {
 	private ScrollPane scroller;
 
 	
-	public ShopView() {
+	public ShopView(final UserInterface ui) {
 		skin = new DefaultSkin();
 		cardHolder = new Table();
 		
@@ -26,8 +26,19 @@ public class ShopView {
 		
 		scroller = new ScrollPane(cardHolder);
 
+		TextButton backButton = new TextButton("<-", skin.getSkin());
+		
+		backButton.addListener(new ChangeListener() {
+	        @Override
+	        public void changed (ChangeEvent event, Actor actor) {
+	        	getBackToMainView(ui);
+	        }
+	    });
+		
 		table = new Table();
 	    table.add(scroller).fill().expand();
+	    table.row();
+	    table.add(backButton).space(50).bottom().right();
 	}
 	
 	private void buildTable() {
@@ -60,6 +71,10 @@ public class ShopView {
 		System.out.println("You bought " + word);
 	}
 
+	private void getBackToMainView(UserInterface ui) {
+		ui.goToMainView();
+	}
+	
 	public Table getTable() {
 		return table;
 	}	

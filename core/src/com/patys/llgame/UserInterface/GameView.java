@@ -2,12 +2,16 @@ package com.patys.llgame.UserInterface;
 
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
+import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.Touchable;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
+import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
+import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
+import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener.ChangeEvent;
 import com.patys.llgame.Card;
 import com.patys.llgame.MetaGame;
 
@@ -17,14 +21,16 @@ public class GameView extends Subject {
 	private Table table;
 	
 	private Card currentCard;
+	private UserInterface ui;
 	
-	public GameView() {
+	public GameView(UserInterface ui) {
 		skin = new DefaultSkin();
 		table = new Table();
-		updateGame();
+		this.ui = ui;
+		updateGame(ui);
 	}
 	
-	public void updateGame() {
+	public void updateGame(final UserInterface ui) {
 		table.clearChildren();
 		
 		Card mainCard = MetaGame.cardManager.getRandomCard();
@@ -43,6 +49,17 @@ public class GameView extends Subject {
 		table.add(getPreparedCardWithWord(mainCard)).space(5).center();
 		table.row();
 		addCardsToTableInRandomWay(table, card1, card2, card3);
+		
+		TextButton backButton = new TextButton("<-", skin.getSkin());
+		
+		backButton.addListener(new ChangeListener() {
+	        @Override
+	        public void changed (ChangeEvent event, Actor actor) {
+	        	getBackToMainView(ui);
+	        }
+	    });
+		table.row();
+	    table.add(backButton).space(10).bottom().right();
 	}
 	
 	private Table getPreparedCardWithWord(Card card) {
@@ -100,7 +117,7 @@ public class GameView extends Subject {
 				}
 			}
 			this.setState(1);
-			updateGame();
+			updateGame(ui);
 		}
 	}
 	
@@ -134,6 +151,10 @@ public class GameView extends Subject {
 		}
 	}
 
+	private void getBackToMainView(UserInterface ui) {
+		ui.goToMainView();
+	}
+	
 	public Table getTable() {
 		return table;
 	}

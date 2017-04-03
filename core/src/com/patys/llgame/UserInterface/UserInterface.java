@@ -12,15 +12,22 @@ public class UserInterface {
 	
 	public UserInterface(Table table) {
 		
-		gameView = new GameView();
+		gameView = new GameView(this);
 		levelBar = new LevelBar(gameView);
 		mainView = new MainView(this);
-		shopView = new ShopView();
+		shopView = new ShopView(this);
 		
 		this.table = table;
 		this.table.add(levelBar.getTable());
 		this.table.row();
 		this.table.add(mainView).expandX();
+	}
+	
+	public void goToMainView() {
+		table.clearChildren();
+		table.add(levelBar.getTable());
+		table.row();
+		table.add(mainView).expandX();
 	}
 	
 	public void goToGame() {
