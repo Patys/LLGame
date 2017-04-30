@@ -33,10 +33,10 @@ public class GameView extends Subject {
 	public void updateGame(final UserInterface ui) {
 		table.clearChildren();
 		
-		Card mainCard = MetaGame.cardManager.getRandomCard();
+		Card mainCard = MetaGame.cardManager.getBoughtCard();
 		Card card1 = MetaGame.cardManager.getCardByWord(mainCard.word);
-		Card card2 = MetaGame.cardManager.getRandomCard();
-		Card card3 = MetaGame.cardManager.getRandomCard();
+		Card card2 = MetaGame.cardManager.getBoughtCard();
+		Card card3 = MetaGame.cardManager.getBoughtCard();
 		
 		while(card1.meaning.equals(card2.meaning)){
 			card2 = MetaGame.cardManager.getRandomCard();

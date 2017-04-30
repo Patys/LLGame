@@ -1,5 +1,1 @@
-[{class:com.patys.llgame.Card,good:1,wrong:2,word:Ich,meaning:Ja},{class:com.patys.llgame.Card,good:3,wrong:1,word:Du,meaning:Ty},
-{class:com.patys.llgame.Card,good:3,wrong:1,word:Er,meaning:On},
-{class:com.patys.llgame.Card,good:3,wrong:1,word:Sie,meaning:Ona},
-{class:com.patys.llgame.Card,good:3,wrong:1,word:Wir,meaning:My},
-{class:com.patys.llgame.Card,good:3,wrong:1,word:Ihr,meaning:Wy}]
+[{class:com.patys.llgame.Card,good:2,wrong:2,word:Ich,meaning:Ja},{class:com.patys.llgame.Card,good:4,wrong:1,word:Du,meaning:Ty},{class:com.patys.llgame.Card,good:6,wrong:1,word:Er,meaning:On},{class:com.patys.llgame.Card,good:3,wrong:1,word:Sie,meaning:Ona},{class:com.patys.llgame.Card,good:3,wrong:1,word:Wir,meaning:My},{class:com.patys.llgame.Card,good:5,wrong:1,word:Ihr,meaning:Wy}]

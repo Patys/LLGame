@@ -53,6 +53,21 @@ public class CardManager {
 		return cards.get(n);
 	}
 	
+	public Card getBoughtCard() {
+		Random rand = new Random();
+		int n = rand.nextInt(cards.size());
+		int times = 0; // to prevent endless loop
+		while(!cards.get(n).bought) {
+			n = rand.nextInt(cards.size());
+			times += 1;
+			
+			if(times > cards.size())
+				break;
+		}
+		
+		return cards.get(n);
+	}
+	
 	public Boolean loadCards(String filename) {
 		Json json = new Json();
 		FileHandle file = Gdx.files.internal(filename);

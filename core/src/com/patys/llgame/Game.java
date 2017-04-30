@@ -37,7 +37,6 @@ public class Game extends ApplicationAdapter {
 		
 		MetaGame.cardManager = new CardManager();
 		MetaGame.cardManager.loadCards("data/cards.json");
-		MetaGame.cardManager.saveCards("data/test.json");
 		
 		stage = new Stage();
 		table = new Table();
@@ -73,6 +72,7 @@ public class Game extends ApplicationAdapter {
 	
 	@Override
 	public void dispose () {
+		MetaGame.cardManager.saveCards("data/cards.json");
 		batch.dispose();
 	}
 }
